@@ -9,16 +9,15 @@ namespace CarProject.Logic
     public class TrackBuilder
     {
         private (int, int)[] _sectionInfo;
-        private Track _track;
-        
-        public Track RaceTrack => _track;
 
-        public TrackBuilder((int, int)[] sectionInfo, bool isLoop = false)
+        public Track RaceTrack { get; }
+
+        public TrackBuilder((int, int)[] sectionInfo)
         {
-            this._sectionInfo = sectionInfo;
+            _sectionInfo = sectionInfo;
             
             List<Section> sections = new List<Section>();
-            Section? lastSection = null;
+            Section? helperSection = null;
 
             foreach (var section in sectionInfo)
             {
@@ -26,11 +25,12 @@ namespace CarProject.Logic
 
                 if (sections.Count > 0)
                 {
-                    lastSection.AddAfterMe(newSection);
+                    helperSection.AddAfterMe(newSection);
                 }
-                lastSection = newSection;
+                helperSection = newSection;
                 sections.Add(newSection);
             }
+            RaceTrack = new Track(sections);
         }
     }
 }
