@@ -42,5 +42,13 @@ namespace CarProject.UnitTests
             Assert.AreEqual(manualTrack.StartSection.NextSection.NextSection.Length, builder.RaceTrack.StartSection.NextSection.NextSection.Length);
             Assert.AreEqual(manualTrack.StartSection.NextSection.NextSection.MaxSpeed, builder.RaceTrack.StartSection.NextSection.NextSection.MaxSpeed);
         }
+
+        [TestMethod]
+        public void ItShouldConnectTheFirstAndLastSection_GivenTrackIsALoop()
+        {
+            (int, int)[] sectionInfo = {(10,10),(20,20),(30,30)};
+            
+            TrackBuilder builder = new TrackBuilder(sectionInfo, closeTrack);
+        }
     }
 }
