@@ -47,8 +47,12 @@ namespace CarProject.UnitTests
         public void ItShouldConnectTheFirstAndLastSection_GivenTrackIsALoop()
         {
             (int, int)[] sectionInfo = {(10,10),(20,20),(30,30)};
+            bool closeTrack = true;
             
             TrackBuilder builder = new TrackBuilder(sectionInfo, closeTrack);
+            TrackBuilder builder2 = new TrackBuilder(sectionInfo);
+            
+            Assert.AreEqual(builder.RaceTrack.StartSection.PreviousSection, builder.RaceTrack.StartSection.NextSection.NextSection);
         }
     }
 }

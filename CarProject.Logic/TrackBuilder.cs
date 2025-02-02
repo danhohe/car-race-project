@@ -12,7 +12,7 @@ namespace CarProject.Logic
 
         public Track RaceTrack { get; }
 
-        public TrackBuilder((int, int)[] sectionInfo)
+        public TrackBuilder((int, int)[] sectionInfo, bool closedTrack = false)
         {
             _sectionInfo = sectionInfo;
             
@@ -30,7 +30,7 @@ namespace CarProject.Logic
                 helperSection = newSection;
                 sections.Add(newSection);
             }
-            RaceTrack = new Track(sections);
+            RaceTrack = new Track(sections, closedTrack);
         }
     }
 }
