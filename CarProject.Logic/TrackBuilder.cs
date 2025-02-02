@@ -8,11 +8,14 @@ namespace CarProject.Logic
 {
     public class TrackBuilder
     {
-        private (int, int)[] sectionInfos;
+        private (int, int)[] _sectionInfo;
+        private Track _track;
+        
+        public Track RaceTrack => _track;
 
-        public TrackBuilder((int, int)[] sectionInfos)
+        public TrackBuilder((int, int)[] sectionInfo, bool isLoop = false)
         {
-            this.sectionInfos = sectionInfos;
+            this._sectionInfo = sectionInfo;
         }
     }
 }

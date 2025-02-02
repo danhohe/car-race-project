@@ -14,9 +14,25 @@ namespace CarProject.UnitTests
         [TestMethod]
         public void ItShouldBuildAConnectedTrack_GivenSectionInformation()
         {
-            (int,int)[] sectionInfos = {(10,10),(20,20),(30,30)};
-            TrackBuilder builder = new TrackBuilder(sectionInfos);
-            Assert.AreEqual(new Section(10,10), builder.Track.Startsection);
+            (int,int)[] sectionInfo = {(10,10),(20,20),(30,30)};
+            TrackBuilder builder = new TrackBuilder(sectionInfo);
+            
+            Section firstSection = new Section(sectionInfo[0].Item1, sectionInfo[0].Item2);
+            Section secondSection = new Section(sectionInfo[1].Item1, sectionInfo[1].Item2);
+            Section thirdSection = new Section(sectionInfo[2].Item1, sectionInfo[2].Item2);
+            
+            firstSection.AddAfterMe(secondSection);
+            secondSection.AddAfterMe(thirdSection);
+
+            Track manualTrack = new([firstSection, secondSection, thirdSection]);
+            
+            Assert.AreEqual(10, manualTrack.StartSection.Length);
+            Assert.AreEqual(10, manualTrack.StartSection.MaxSpeed);
+            Assert.AreEqual(firstSection, manualTrack.StartSection);
+            Assert.AreEqual(secondSection, manualTrack.StartSection.NextSection);
+            Assert.AreEqual(thirdSection, manualTrack.StartSection.NextSection.NextSection);
+            
+            Assert.AreEqual(10, builder.RaceTrack.Startsection.Length);
         }
     }
 }
