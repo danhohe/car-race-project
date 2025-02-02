@@ -16,6 +16,21 @@ namespace CarProject.Logic
         public TrackBuilder((int, int)[] sectionInfo, bool isLoop = false)
         {
             this._sectionInfo = sectionInfo;
+            
+            List<Section> sections = new List<Section>();
+            Section? lastSection = null;
+
+            foreach (var section in sectionInfo)
+            {
+                Section newSection = new(section.Item1, section.Item2);
+
+                if (sections.Count > 0)
+                {
+                    lastSection.AddAfterMe(newSection);
+                }
+                lastSection = newSection;
+                sections.Add(newSection);
+            }
         }
     }
 }
