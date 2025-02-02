@@ -9,16 +9,14 @@ namespace CarProject.Logic
     public class Track
     {
         private List<Section> _trackList;
-        private bool _closedTrack;
         
         public Track(List<Section> trackList, bool closedTrack = false)
         {
             this._trackList = trackList;
-            this._closedTrack = closedTrack;
 
             if (closedTrack)
             {
-                _trackList.Last().AddAfterMe(_trackList.First());
+                _trackList.Last().AddAfterMe(_trackList.First(), closedTrack);
             }
         }
 
