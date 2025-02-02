@@ -36,7 +36,11 @@ namespace CarProject.UnitTests
             Assert.AreEqual(10, builder.RaceTrack.StartSection.MaxSpeed);
             
             Assert.AreEqual(manualTrack.StartSection.Length, builder.RaceTrack.StartSection.Length);
-            
+            Assert.AreEqual(manualTrack.StartSection.MaxSpeed, builder.RaceTrack.StartSection.MaxSpeed);
+            Assert.AreEqual(manualTrack.StartSection.NextSection.Length, builder.RaceTrack.StartSection.NextSection.Length);
+            Assert.AreEqual(manualTrack.StartSection.NextSection.MaxSpeed, builder.RaceTrack.StartSection.NextSection.MaxSpeed);
+            Assert.AreEqual(manualTrack.StartSection.NextSection.NextSection.Length, builder.RaceTrack.StartSection.NextSection.NextSection.Length);
+            Assert.AreEqual(manualTrack.StartSection.NextSection.NextSection.MaxSpeed, builder.RaceTrack.StartSection.NextSection.NextSection.MaxSpeed);
         }
     }
 }
